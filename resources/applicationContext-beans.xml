@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean class="com.solverpeng.ssh.action.EmployeeAction" id="employeeAction">
+        <property name="employeeService" ref="employeeService"/>
+        <property name="departmentService" ref="departmentService"/>
+    </bean>
+
+    <bean class="com.solverpeng.ssh.service.EmployeeService" id="employeeService">
+        <property name="employeeDao" ref="employeeDao"/>
+    </bean>
+
+    <bean class="com.solverpeng.ssh.dao.EmployeeDao" id="employeeDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean class="com.solverpeng.ssh.service.DepartmentService" id="departmentService">
+        <property name="departmentDao" ref="departmentDao"/>
+    </bean>
+
+    <bean class="com.solverpeng.ssh.dao.DepartmentDao" id="departmentDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+</beans>
