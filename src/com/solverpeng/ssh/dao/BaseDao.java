@@ -14,7 +14,7 @@ public abstract class BaseDao {
         this.sessionFactory = sessionFactory;
     }
 
-    protected Session getSession() {
+    Session getSession() {
         return this.sessionFactory.getCurrentSession();
     }
 }
