@@ -1,6 +1,7 @@
 package com.solverpeng.ssh.dao;
 
 import com.solverpeng.ssh.beans.Employee;
+import com.solverpeng.ssh.dao.base.BaseDao;
 
 import java.util.List;
 
@@ -8,11 +9,13 @@ import java.util.List;
  * @author solverpeng
  * @create 2016-11-08-15:48
  */
-public class EmployeeDao extends BaseDao{
+public class EmployeeDao extends BaseDao<Employee, Integer> {
 
     public List<Employee> getEmployeeList() {
-        String hql = "from Employee e left outer join fetch e.dept";
-        return this.getSession().createQuery(hql).list();
+        /*String hql = "from Employee e left outer join fetch e.dept";
+        return this.getSession().createQuery(hql).list();*/
+        List<Employee> all = getAll();
+        return all;
     }
 
     public void saveOrUpdateEmployee(Employee employee) {
