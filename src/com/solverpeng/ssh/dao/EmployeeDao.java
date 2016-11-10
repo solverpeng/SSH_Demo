@@ -12,10 +12,7 @@ import java.util.List;
 public class EmployeeDao extends BaseDao<Employee, Integer> {
 
     public List<Employee> getEmployeeList() {
-        /*String hql = "from Employee e left outer join fetch e.dept";
-        return this.getSession().createQuery(hql).list();*/
-        List<Employee> all = getAll();
-        return all;
+        return getAll();
     }
 
     public void saveOrUpdateEmployee(Employee employee) {
@@ -34,6 +31,5 @@ public class EmployeeDao extends BaseDao<Employee, Integer> {
     public long getEmployeeCountByEmployeeName(String employeeName) {
         String hql = "select count(id) from Employee e where e.employeeName like ?";
         return (Long) this.getSession().createQuery(hql).setString(0, "%"+ employeeName +"%").uniqueResult();
-
     }
 }
