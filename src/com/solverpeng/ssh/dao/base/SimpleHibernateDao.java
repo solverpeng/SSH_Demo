@@ -6,6 +6,7 @@ import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.metadata.ClassMetadata;
+import org.hibernate.metamodel.source.annotations.entity.EntityClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
@@ -197,6 +198,13 @@ class SimpleHibernateDao<T, PK extends Serializable> {
 
         Criterion criterion = Restrictions.eq(propertyName, value);
         return find(criterion);
+    }
+
+    public T findById(Integer id) {
+        Assert.notNull(id, "id 不能为空!");
+        Criteria criteria = getSession().createCriteria(entityClass);
+        criteria.add(Restrictions.eq("id", id));
+        return (T) criteria.uniqueResult();
     }
 
     /**

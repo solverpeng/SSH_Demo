@@ -11,7 +11,10 @@ import java.util.List;
  */
 public class DepartmentDao extends BaseDao<Department, Integer> {
     public List<Department> getDepartmentList() {
+        /* 原生 HQL
         String hql = "from Department ";
         return getSession().createQuery(hql).list();
+         */
+        return getAll();
     }
 }

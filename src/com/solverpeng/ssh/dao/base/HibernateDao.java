@@ -175,7 +175,7 @@ public class HibernateDao<T, PK extends Serializable> extends
     /**
      * 执行 count 查询, 获得本次 Criteria 查询所能获得的对象总数
      */
-    private int countCriteriaResult(final Criteria criteria) {
+    public int countCriteriaResult(final Criteria criteria) {
         CriteriaImpl impl = (CriteriaImpl) criteria;
 
         // 先把 Projection, ResultTransformer, OrderBy 取出来, 清空三者后再执行 Count 操作
@@ -218,7 +218,7 @@ public class HibernateDao<T, PK extends Serializable> extends
     /**
      * 自动处理简单的 hql 语句
      */
-    private long countHqlResult(String hql, Map<String, Object> values) {
+    public long countHqlResult(String hql, Map<String, Object> values) {
         long count = 0;
 
         String fromHql = hql;
@@ -248,7 +248,7 @@ public class HibernateDao<T, PK extends Serializable> extends
     /**
      * 自动处理简单的 hql 语句
      */
-    private long countHqlResult(String hql, Object... values) {
+    public long countHqlResult(String hql, Object... values) {
         long count = 0;
 
         String fromHql = hql;
