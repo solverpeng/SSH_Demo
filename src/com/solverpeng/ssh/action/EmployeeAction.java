@@ -73,11 +73,11 @@ public class EmployeeAction extends ActionSupport implements RequestAware, Model
     }
 
     public String pageList() {
+        System.out.println(model);
         Page<Employee> page = new Page<>();
         List<PropertyFilter> filters = new ArrayList<>();
-
-
         employeeService.getEmployeePageList(page, filters);
+        requestMap.put("departmentList", departmentService.getDepartmentList());
         return "page";
     }
 

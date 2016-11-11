@@ -5,6 +5,7 @@
 </head>
 <body>
     <center>
+        <a href="emp-pageList">Emp List Page</a>
         <a href="emp-list">Emp List</a><br>
         <a href="emp-input">Input Emp</a>
     </center>

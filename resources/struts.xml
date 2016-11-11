@@ -20,6 +20,7 @@
 
         <action name="emp-*" class="employeeAction" method="{1}">
             <result name="list">/WEB-INF/views/list.jsp</result>
+            <result name="page">/WEB-INF/views/page.jsp</result>
             <result name="input">/WEB-INF/views/input.jsp</result>
             <result name="save" type="redirectAction">emp-list.action</result>
             <result name="success" type="stream">
