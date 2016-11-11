@@ -4,6 +4,8 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
 import com.solverpeng.ssh.beans.Employee;
+import com.solverpeng.ssh.orm.Page;
+import com.solverpeng.ssh.orm.PropertyFilter;
 import com.solverpeng.ssh.service.DepartmentService;
 import com.solverpeng.ssh.service.EmployeeService;
 import org.apache.struts2.interceptor.RequestAware;
@@ -11,6 +13,7 @@ import org.apache.struts2.interceptor.RequestAware;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -52,17 +55,30 @@ public class EmployeeAction extends ActionSupport implements RequestAware, Model
         return this.model;
     }
 
-    private Map<String, Object> requstMap;
+    private Map<String, Object> requestMap;
 
     @Override
     public void setRequest(Map<String, Object> map) {
-        this.requstMap = map;
+        this.requestMap = map;
     }
 
     public String list() {
         List<Employee> employeeList = employeeService.getEmployeeList();
-        requstMap.put("employeeList", employeeList);
+        requestMap.put("employeeList", employeeList);
         return "list";
+    }
+
+    public void preparePageList() {
+        this.model = new Employee();
+    }
+
+    public String pageList() {
+        Page<Employee> page = new Page<>();
+        List<PropertyFilter> filters = new ArrayList<>();
+
+
+        employeeService.getEmployeePageList(page, filters);
+        return "page";
     }
 
     public void prepareInput() {
@@ -72,7 +88,7 @@ public class EmployeeAction extends ActionSupport implements RequestAware, Model
     }
 
     public String input() {
-        requstMap.put("departmentList", departmentService.getDepartmentList());
+        requestMap.put("departmentList", departmentService.getDepartmentList());
         return "input";
     }
 

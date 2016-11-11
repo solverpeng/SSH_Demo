@@ -2,8 +2,11 @@ package com.solverpeng.ssh.service;
 
 import com.solverpeng.ssh.beans.Employee;
 import com.solverpeng.ssh.dao.EmployeeDao;
+import com.solverpeng.ssh.orm.Page;
+import com.solverpeng.ssh.orm.PropertyFilter;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author solverpeng
@@ -35,6 +38,10 @@ public class EmployeeService {
 
     public long getEmployeeCountByEmployeeName(String employeeName) {
         return employeeDao.getEmployeeCountByEmployeeName(employeeName);
+    }
+
+    public Page<Employee> getEmployeePageList(Page<Employee> page, List<PropertyFilter> filters) {
+        return employeeDao.getEmployeePageList(page, filters);
     }
 
 }

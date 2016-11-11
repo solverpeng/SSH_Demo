@@ -2,10 +2,10 @@ package com.solverpeng.ssh.dao;
 
 import com.solverpeng.ssh.beans.Employee;
 import com.solverpeng.ssh.dao.base.BaseDao;
+import com.solverpeng.ssh.orm.Page;
+import com.solverpeng.ssh.orm.PropertyFilter;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author solverpeng
@@ -73,5 +73,19 @@ public class EmployeeDao extends BaseDao<Employee, Integer> {
         Map<String, Object> map = new HashMap<>();
         map.put("employeeName", str);
         return countHqlResult(hql2, map);
+    }
+
+    public Page<Employee> getEmployeePageList(Page<Employee> page, List<PropertyFilter> filters) {
+        return findPage(page, filters);
+    }
+
+    public Page<Employee> getEmployeePageList(Page<Employee> page, Object...values) {
+        String hql = "";
+        return findPage(page, hql, values);
+    }
+
+    public Page<Employee> getEmployeePageList(Page<Employee> page, Map<String, Object> values) {
+        String hql = "";
+        return findPage(page, hql, values);
     }
 }
